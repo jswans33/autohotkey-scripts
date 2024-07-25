@@ -1,0 +1,67 @@
+graph TD
+    Info[Info Sheet]
+    Systems[Systems Sheet]
+    Check[Check Sheet]
+    GCCOW[GC&COW Sheet]
+    Recap[Recap Sheet]
+    CondensedRecap[Condensed Recap Sheet]
+    Areas[Area Sheets 1-10]
+    Fixtures[Fixtures Sheet]
+    PlbgEquip[Plbg Equipment Sheet]
+    PlbgPVF[Plbg PV&F Sheet]
+    HVACEquip[HVAC Equipment Sheet]
+    HVACPVF[HVAC PV&F Sheet]
+    SMEquip[SM Equipment Sheet]
+    SMDuct[SM Duct Sheet]
+
+    Info <-->|Area Names, SF, Ratios| Areas
+    Info -->|Project info, Area names, SF| Recap
+    Info -->|Project Name, Area Names & SF| Systems
+    Info -->|Rates & MCA| Check
+    Info -->|Project Info| GCCOW
+
+    Systems -->|Area Calculations| Recap
+    Systems -->|Area Calculations| CondensedRecap
+
+    Fixtures -->|Fixture data| Areas
+    PlbgEquip -->|Plumbing equipment data| Areas
+    PlbgPVF -->|Plumbing PV&F data| Areas
+    HVACEquip -->|HVAC equipment data| Areas
+    HVACPVF -->|HVAC PV&F data| Areas
+    SMEquip -->|Sheet metal equipment data| Areas
+    SMDuct -->|Sheet metal duct data| Areas
+
+    PlbgEquip -->|Equipment Data| Check
+    PlbgPVF -->|PV&F Data| Check
+    HVACEquip -->|Equipment Data| Check
+    HVACPVF -->|PV&F Data| Check
+    SMEquip -->|Equipment Data| Check
+    SMDuct -->|Duct Data| Check
+
+    Areas -->|Compiled area data| Recap
+    Areas -->|Area Details| CondensedRecap
+
+    Check -->|Verified Data| GCCOW
+    GCCOW -->|Cost Data| Recap
+    Recap -->|Summary Data| CondensedRecap
+    Recap -->|Summary data| Areas
+
+    subgraph Named Ranges
+        projectName[projectName]
+        area1[area1]
+        areaSF1[areaSF1]
+        area1sfRatio[area1sfRatio]
+        plbgFieldRate[plbgFieldRate]
+        hvacPVFArea1[hvacPVFArea1]
+    end
+
+    Info --> projectName
+    Info --> area1
+    Info --> areaSF1
+    Info --> area1sfRatio
+    Info --> plbgFieldRate
+    HVACPVF --> hvacPVFArea1
+
+    Areas -.-> area1
+    Areas -.-> areaSF1
+    Areas -.-> area1sfRatio
